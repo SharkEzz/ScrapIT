@@ -22,3 +22,4 @@ Route::resource('products', 'ProductController')->except(['create', 'edit']);
 Route::resource('scrapers', 'ScraperController')->except(['create', 'edit']);
 Route::resource('configs', 'ConfigController')->except(['create', 'edit', 'destroy', 'show', 'update']);
 Route::resource('mails', 'MailAlertController')->except(['create', 'edit', 'show', 'update']);
+Route::post('mails', 'MailAlertController@createAlert');
