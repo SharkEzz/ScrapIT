@@ -18,4 +18,5 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 
-
+Route::resource('products', 'ProductController')->except(['create', 'edit']);
+Route::resource('scrapers', 'ScraperController')->except(['create', 'edit']);

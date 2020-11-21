@@ -16,7 +16,7 @@
         <tr v-for="product in products">
           <td>{{ product.name }}</td>
           <td>{{ product.description }}</td>
-          <td><a class="badge badge-primary" target="_blank" :href="product.url">{{ product.url }}</a></td>
+          <td><a class="badge badge-primary" target="_blank" :href="product.url">Ouvrir</a></td>
           <td>{{ product.price }} €</td>
           <td>{{ product.scraper.name }}</td>
           <td>

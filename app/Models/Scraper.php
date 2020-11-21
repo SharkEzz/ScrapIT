@@ -9,5 +9,12 @@ class Scraper extends Model
 {
     use HasFactory;
 
+    protected $hidden = ['updated_at'];
+
     protected $fillable = ['name', 'description', 'block_id'];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'scraper_id');
+    }
 }

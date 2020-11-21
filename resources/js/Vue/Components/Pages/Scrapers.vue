@@ -17,9 +17,9 @@
         <tbody>
         <tr v-for="scraper in scrapers">
           <td>{{ scraper.name }}</td>
-          <td>{{ scraper.description }}</td>
+          <td>{{ scraper.description ? scraper.description : 'Aucune' }}</td>
           <td>
-            <span class="badge badge-info">{{ scraper.blockName }}</span>
+            <span class="badge badge-info">{{ scraper.block_id }}</span>
           </td>
           <td>
             <b-button variant="secondary" class="mb-md-0 mb-sm-2" size="sm">Editer</b-button>
