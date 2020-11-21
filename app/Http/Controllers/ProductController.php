@@ -21,24 +21,25 @@ class ProductController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'max:255',
+            'url' => 'required|max:255',
+            'price' => 'required|integer',
+            'scraper_id' => 'required'
+        ]);
+
+        $product = Product::create($data);
+        $product->save();
+
+        return new JsonResponse($product);
     }
 
     /**
@@ -52,17 +53,6 @@ class ProductController extends Controller
         $product = Product::with('scraper')->findOrFail($id);
 
         return new JsonResponse($product);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**

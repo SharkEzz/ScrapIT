@@ -19,6 +19,24 @@ const productService = {
         return fetch(API_URL + '/products/' + id, {
             method: 'DELETE'
         });
+    },
+    add({name, description, price, scraper_id, url})
+    {
+        const newProduct = {
+            name,
+            description,
+            price,
+            scraper_id,
+            url
+        };
+
+        return fetch(API_URL + '/products', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newProduct)
+        });
     }
 };
 
