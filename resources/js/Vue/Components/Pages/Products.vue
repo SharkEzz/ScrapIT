@@ -75,8 +75,8 @@
 </template>
 
 <script>
-import productService from "../../Services/Fetch/productService";
-import scraperService from "../../Services/Fetch/scraperService";
+import productService from "../../../Services/Fetch/productService";
+import scraperService from "../../../Services/Fetch/scraperService";
 
 import { BButton, BModal, BForm, BFormGroup, BFormInput, BFormSelect } from 'bootstrap-vue';
 

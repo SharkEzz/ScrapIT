@@ -40,7 +40,7 @@
 
 <script>
 import { BButton, BSkeletonTable, BModal, BForm, BFormGroup, BFormInput  } from 'bootstrap-vue';
-import alertService from "../../Services/Fetch/alertService";
+import alertService from "../../../Services/Fetch/alertService";
 
 export default {
     name: 'Alerts',

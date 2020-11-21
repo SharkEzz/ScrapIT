@@ -54,7 +54,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    document.title = 'ScrapIT - ' + to.meta.title;
+    document.title = process.env.MIX_APP_NAME + ' - ' + to.meta.title;
 
     next();
 });

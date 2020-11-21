@@ -50,7 +50,7 @@
 
 <script>
 import { BForm, BFormGroup, BFormInput, BButton, BFormCheckbox } from 'bootstrap-vue';
-import configService from "../../Services/Fetch/configService";
+import configService from "../../../Services/Fetch/configService";
 
 export default {
     name: 'Configuration',
