@@ -15,6 +15,11 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('description');
+            $table->string('url');
+            $table->unsignedInteger('price');
+            $table->foreignId('scraper_id')->references('id')->on('scrapers');
             $table->timestamps();
         });
     }
