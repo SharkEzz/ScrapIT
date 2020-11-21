@@ -13,25 +13,25 @@
                             label="Hôte SMTP"
                             label-for="host"
                         >
-                            <b-form-input id="host" v-model="form.host"></b-form-input>
+                            <b-form-input id="host" v-model="form.host" required></b-form-input>
                         </b-form-group>
                         <b-form-group
                             label="Port SMTP"
                             label-for="port"
                         >
-                            <b-form-input type="number" id="port" v-model="form.port"></b-form-input>
+                            <b-form-input type="number" id="port" v-model="form.port" required></b-form-input>
                         </b-form-group>
                         <b-form-group
                             label="Utilisateur SMTP"
                             label-for="user"
                         >
-                            <b-form-input id="user" v-model="form.user"></b-form-input>
+                            <b-form-input id="user" v-model="form.user" required></b-form-input>
                         </b-form-group>
                         <b-form-group
                             label="Mot de passe SMTP"
                             label-for="pass"
                         >
-                            <b-form-input type="password" id="pass" v-model="form.pass"></b-form-input>
+                            <b-form-input type="password" id="pass" v-model="form.pass" required></b-form-input>
                         </b-form-group>
                         <b-form-checkbox
                             v-model="form.secure"

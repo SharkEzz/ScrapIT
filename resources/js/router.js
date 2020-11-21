@@ -8,28 +8,46 @@ const routes = [
     {
         path: '/',
         name: 'index',
-        component: Home
+        component: Home,
+        meta: {
+            title: 'Accueil'
+        }
     },
     {
         path: '/products',
         name: 'products',
-        component: Products
+        component: Products,
+        meta: {
+            title: 'Produits'
+        }
     },
     {
         path: '/scrapers',
         name: 'scrapers',
-        component: Scrapers
+        component: Scrapers,
+        meta: {
+            title: 'Scrapers'
+        }
     },
     {
         path: '/config',
         name: 'configuration',
-        component: Configuration
+        component: Configuration,
+        meta: {
+            title: 'Configuration'
+        }
     }
 ];
 
 const router = new VueRouter({
     mode: 'history',
     routes
+});
+
+router.beforeEach((to, from, next) => {
+    document.title = 'ScrapIT - ' + to.meta.title;
+
+    next();
 });
 
 export default router;
