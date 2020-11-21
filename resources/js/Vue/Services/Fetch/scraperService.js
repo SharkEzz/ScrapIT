@@ -1,5 +1,12 @@
-import fetchScrapers from "./Fetch/fetchScrapers";
-import {API_URL} from "./Fetch/fetch";
+import {API_URL} from "./fetch";
+
+export const fetchScrapers = () => {
+    return fetch(API_URL + '/scrapers', {
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(data => data.json());
+};
 
 const scraperService = {
     getAll()

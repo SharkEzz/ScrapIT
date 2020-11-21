@@ -30,10 +30,9 @@
 </template>
 
 <script>
-import productService from "../../Services/productService";
+import productService from "../../Services/Fetch/productService";
 
 import { BButton } from 'bootstrap-vue';
-import fetchProducts from "../../Services/Fetch/fetchProducts";
 
 export default {
   name: 'Products',

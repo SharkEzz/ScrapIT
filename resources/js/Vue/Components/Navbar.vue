@@ -13,7 +13,7 @@
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">
-        <b-nav-item to="/" disabled="">Configuration</b-nav-item>
+        <b-nav-item :to="{name: 'configuration'}">Configuration</b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>

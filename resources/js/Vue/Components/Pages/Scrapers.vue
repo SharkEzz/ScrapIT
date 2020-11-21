@@ -68,7 +68,7 @@
 
 <script>
 import { BButton, BSkeletonTable, BModal, BForm, BFormGroup, BFormInput  } from 'bootstrap-vue';
-import scraperService from "../../Services/scraperService";
+import scraperService from "../../Services/Fetch/scraperService";
 
 export default {
   name: 'Scrapers',

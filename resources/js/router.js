@@ -2,6 +2,7 @@ import VueRouter from "vue-router";
 import Home from "./Vue/Components/Pages/Home";
 import Products from "./Vue/Components/Pages/Products";
 import Scrapers from "./Vue/Components/Pages/Scrapers";
+import Configuration from "./Vue/Components/Pages/Configuration";
 
 const routes = [
     {
@@ -18,6 +19,11 @@ const routes = [
         path: '/scrapers',
         name: 'scrapers',
         component: Scrapers
+    },
+    {
+        path: '/config',
+        name: 'configuration',
+        component: Configuration
     }
 ];
 
