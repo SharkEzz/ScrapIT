@@ -8,7 +8,7 @@
       <b-navbar-nav>
         <b-nav-item to="/">Accueil</b-nav-item>
         <b-nav-item :to="{name: 'products'}">Mes produits</b-nav-item>
-        <b-nav-item to="/" disabled="">Mes alertes</b-nav-item>
+        <b-nav-item :to="{name: 'alerts'}">Mes alertes</b-nav-item>
         <b-nav-item :to="{name: 'scrapers'}">Scrapers</b-nav-item>
       </b-navbar-nav>
 

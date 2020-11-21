@@ -3,6 +3,7 @@ import Home from "./Vue/Components/Pages/Home";
 import Products from "./Vue/Components/Pages/Products";
 import Scrapers from "./Vue/Components/Pages/Scrapers";
 import Configuration from "./Vue/Components/Pages/Configuration";
+import Alerts from "./Vue/Components/Pages/Alerts";
 
 const routes = [
     {
@@ -35,6 +36,14 @@ const routes = [
         component: Configuration,
         meta: {
             title: 'Configuration'
+        }
+    },
+    {
+        path: '/alerts',
+        name: 'alerts',
+        component: Alerts,
+        meta: {
+            title: 'Alertes'
         }
     }
 ];

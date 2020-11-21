@@ -17,8 +17,8 @@ class CreateMailAlertsTable extends Migration
             $table->id();
             $table->foreignId('product_id')->references('id')->on('products');
             $table->unsignedInteger('price');
+            $table->dateTime('date');
             $table->foreignId('mail_config_id')->references('id')->on('mail_configs');
-            $table->timestamps();
         });
     }
 

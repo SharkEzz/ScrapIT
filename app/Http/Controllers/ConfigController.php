@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\MailConfig;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Psy\Util\Json;
 
 class ConfigController extends Controller
 {

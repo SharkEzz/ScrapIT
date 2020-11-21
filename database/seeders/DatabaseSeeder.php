@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\MailAlert;
+use App\Models\MailConfig;
 use App\Models\Product;
 use App\Models\Scraper;
 use Illuminate\Database\Seeder;
@@ -27,5 +29,15 @@ class DatabaseSeeder extends Seeder
         ])->save();
 
         Product::factory(10)->create();
+
+        MailConfig::create([
+            'smtp_user' => 'test',
+            'smtp_pass' => 'pass',
+            'smtp_host' => 'host@host.com',
+            'smtp_port' => 465,
+            'is_secure' => true
+        ])->save();
+
+        MailAlert::factory(10)->create();
     }
 }

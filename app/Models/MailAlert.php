@@ -10,8 +10,9 @@ class MailAlert extends Model
     use HasFactory;
 
     protected $table = 'mail_alerts';
+    public $timestamps = false;
 
-    protected $fillable = ['product_id', 'price', 'mail_config_id'];
+    protected $fillable = ['product_id', 'price', 'mail_config_id', 'date'];
 
     public function product()
     {

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Scraper;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Psy\Util\Json;
 
 class ScraperController extends Controller
 {
