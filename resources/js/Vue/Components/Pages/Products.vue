@@ -59,8 +59,11 @@ export default {
     },
     remove(id)
     {
-      productService.remove(id)
-        .then(() => this.fetchProducts());
+        if(!confirm('Supprimer ce produit ?'))
+            return ;
+
+        productService.remove(id)
+            .then(() => this.fetchProducts());
     }
   }
 }

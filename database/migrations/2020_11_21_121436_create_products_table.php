@@ -19,7 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('description');
             $table->string('url');
             $table->unsignedInteger('price');
-            $table->foreignId('scraper_id')->references('id')->on('scrapers');
+            $table->foreignId('scraper_id')->references('id')->on('scrapers')
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

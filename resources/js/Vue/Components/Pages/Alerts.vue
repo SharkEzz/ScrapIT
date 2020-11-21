@@ -4,7 +4,7 @@
             <h3>Alertes reçues</h3>
         </div>
         <div class="row">
-            <table class="table table-striped table-responsive-sm mt-3" v-if="loaded">
+            <table class="table table-striped table-responsive-sm mt-3" v-if="loaded && alerts.length > 0">
                 <thead>
                 <tr>
                     <th>Produit</th>
@@ -28,11 +28,12 @@
                 </tbody>
             </table>
             <b-skeleton-table
-                v-else
+                v-else-if="!loaded"
                 :rows="4"
                 :columns="4"
                 :table-props="{ striped: true }"
             ></b-skeleton-table>
+            <div class="alert alert-info mt-3 w-100 text-center" v-else><b>Aucune alerte pour le moment...</b></div>
         </div>
     </div>
 </template>

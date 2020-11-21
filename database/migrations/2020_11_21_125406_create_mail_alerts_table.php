@@ -15,7 +15,8 @@ class CreateMailAlertsTable extends Migration
     {
         Schema::create('mail_alerts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->references('id')->on('products');
+            $table->foreignId('product_id')->references('id')->on('products')
+                ->cascadeOnDelete();
             $table->unsignedInteger('price');
             $table->dateTime('date');
             $table->foreignId('mail_config_id')->references('id')->on('mail_configs');
