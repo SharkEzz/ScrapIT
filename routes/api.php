@@ -18,7 +18,13 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 
+Route::post('login', 'Security\\SecurityController@login')->name('app.login');
+
 Route::resource('products', 'ProductController')->except(['create', 'edit']);
 Route::resource('scrapers', 'ScraperController')->except(['create', 'edit']);
 Route::resource('configs', 'ConfigController')->except(['create', 'edit', 'destroy', 'show', 'update']);
 Route::resource('mails', 'MailAlertController')->except(['edit', 'show', 'update']);
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return new \Illuminate\Http\JsonResponse($request->user());
+});

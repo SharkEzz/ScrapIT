@@ -4,6 +4,7 @@ import Products from "./Vue/Components/Pages/Products";
 import Scrapers from "./Vue/Components/Pages/Scrapers";
 import Configuration from "./Vue/Components/Pages/Configuration";
 import Alerts from "./Vue/Components/Pages/Alerts";
+import Login from "./Vue/Components/Pages/Login";
 
 const routes = [
     {
@@ -44,6 +45,14 @@ const routes = [
         component: Alerts,
         meta: {
             title: 'Alertes'
+        }
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login,
+        meta: {
+            title: 'Connexion'
         }
     }
 ];

@@ -82,15 +82,7 @@ class ScraperController extends Controller
             $scraper->delete();
             return new JsonResponse([
                 'success' => 'Deleted',
-                204
-            ]);
-        }
-        else
-        {
-            return new JsonResponse([
-                'error' => 'relations',
-                409
-            ]);
+            ], 204);
         }
     }
 }

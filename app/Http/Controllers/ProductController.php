@@ -80,7 +80,6 @@ class ProductController extends Controller
 
         return new JsonResponse([
             'success' => 'Deleted',
-            204
-        ]);
+        ], 204);
     }
 }

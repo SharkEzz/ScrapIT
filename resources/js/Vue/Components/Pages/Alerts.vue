@@ -2,11 +2,20 @@
     <div>
         <div class="row justify-content-between">
             <h3>Alertes reçues</h3>
-            <button class="btn btn-info" @click="fetchAll">Actualiser</button>
+            <button class="btn btn-info" @click="refresh">Actualiser</button>
         </div>
         <div class="row mt-3 no-gutters">
             <div class="card col-12">
                 <div class="card-body">
+                    <b-alert
+                        :show="showAlert"
+                        dismissible
+                        variant="success"
+                        class="text-center w-100"
+                        @dismissed="showAlert = false"
+                    >
+                        Liste actualisée !
+                    </b-alert>
                     <table class="table table-striped table-responsive-sm mt-3" v-if="loaded && alerts.length > 0">
                         <thead>
                         <tr>
@@ -45,7 +54,16 @@
 </template>
 
 <script>
-import { BButton, BSkeletonTable, BModal, BForm, BFormGroup, BFormInput  } from 'bootstrap-vue';
+import {
+    BButton,
+    BSkeletonTable,
+    BModal,
+    BForm,
+    BFormGroup,
+    BFormInput,
+    BAlert,
+    BProgress
+} from 'bootstrap-vue';
 import alertService from "../../../Services/Fetch/alertService";
 
 export default {
@@ -56,12 +74,15 @@ export default {
         BModal,
         BForm,
         BFormGroup,
-        BFormInput
+        BFormInput,
+        BAlert,
+        BProgress
     },
     data() {
         return {
             alerts: [],
             loaded: false,
+            showAlert: false
         }
     },
     beforeMount() {
@@ -84,6 +105,14 @@ export default {
             alertService.remove(id)
                 .then(() => {
                     this.fetchAll();
+                })
+        },
+        refresh()
+        {
+            alertService.getAll()
+                .then(alerts => {
+                    this.alerts = alerts;
+                    this.showAlert = true;
                 })
         }
     }

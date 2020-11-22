@@ -6,7 +6,9 @@ use App\Models\MailAlert;
 use App\Models\MailConfig;
 use App\Models\Product;
 use App\Models\Scraper;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +19,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        User::create([
+            'name' => 'Test test',
+            'email' => 'test@test.com',
+            'password' => Hash::make('test')
+        ])->save();
+
         Scraper::create([
             'name' => 'Amazon FR & DE',
             'description' => 'Scraper pour Amazon FR et DE',
