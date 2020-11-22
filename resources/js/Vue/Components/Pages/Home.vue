@@ -1,7 +1,7 @@
 <template>
   <div>
       <h3>Accueil</h3>
-      <button @click="test">Test</button>
+      <span>Plutôt vide par ici...</span>
   </div>
 </template>
 

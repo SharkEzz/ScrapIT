@@ -4,36 +4,40 @@
       <h3>Mes produits</h3>
       <button class="btn btn-success" @click="showAdd = !showAdd">Ajouter</button>
     </div>
-    <div class="row">
-      <table class="table table-striped table-responsive-sm mt-3" v-if="loaded">
-        <thead>
-        <tr>
-          <th>Nom</th>
-          <th>Description</th>
-          <th>ID du bloc</th>
-          <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="scraper in scrapers">
-          <td>{{ scraper.name }}</td>
-          <td>{{ scraper.description ? scraper.description : 'Aucune' }}</td>
-          <td>
-            <span class="badge badge-info">{{ scraper.block_id }}</span>
-          </td>
-          <td>
-            <b-button variant="secondary" class="mb-md-0 mb-sm-2" size="sm">Editer</b-button>
-            <b-button variant="danger" size="sm" @click="remove(scraper.id)">Supprimer</b-button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      <b-skeleton-table
-          v-else
-          :rows="4"
-          :columns="4"
-          :table-props="{ striped: true }"
-      ></b-skeleton-table>
+    <div class="row no-gutters mt-3">
+        <div class="card col-12">
+            <div class="card-body">
+                <table class="table table-striped table-responsive-sm mt-3" v-if="loaded">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>ID du bloc</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="scraper in scrapers">
+                        <td>{{ scraper.name }}</td>
+                        <td>{{ scraper.description ? scraper.description : 'Aucune' }}</td>
+                        <td>
+                            <span class="badge badge-info">{{ scraper.block_id }}</span>
+                        </td>
+                        <td>
+                            <b-button variant="secondary" class="mb-md-0 mb-sm-2" size="sm">Editer</b-button>
+                            <b-button variant="danger" size="sm" @click="remove(scraper.id)">Supprimer</b-button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <b-skeleton-table
+                    v-else
+                    :rows="4"
+                    :columns="4"
+                    :table-props="{ striped: true }"
+                ></b-skeleton-table>
+            </div>
+        </div>
     </div>
 
     <b-modal hide-footer="" v-model="showAdd" id="addModal" title="Ajouter un scraper">

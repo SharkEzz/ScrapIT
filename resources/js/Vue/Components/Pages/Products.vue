@@ -4,32 +4,42 @@
           <h3>Mes produits</h3>
           <b-button variant="success" @click="loadModal">Ajouter</b-button>
       </div>
-      <div class="row">
-          <table class="table table-striped table-responsive-sm mt-3">
-              <thead>
-              <tr>
-                  <th>Nom</th>
-                  <th>Description</th>
-                  <th>URL</th>
-                  <th>Prix</th>
-                  <th>Scraper</th>
-                  <th>Actions</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr v-for="product in products">
-                  <td>{{ product.name }}</td>
-                  <td>{{ product.description }}</td>
-                  <td><a class="badge badge-primary" target="_blank" :href="product.url">Ouvrir</a></td>
-                  <td>{{ product.price }} €</td>
-                  <td>{{ product.scraper.name }}</td>
-                  <td>
-                      <b-button variant="secondary" class="mb-md-0 mb-sm-2" size="sm">Editer</b-button>
-                      <b-button variant="danger" size="sm" @click="remove(product.id)">Supprimer</b-button>
-                  </td>
-              </tr>
-              </tbody>
-          </table>
+      <div class="row mt-3 no-gutters">
+          <div class="card col-12">
+              <div class="card-body">
+                  <table class="table table-striped table-responsive-sm mt-3" v-if="loaded">
+                      <thead>
+                      <tr>
+                          <th>Nom</th>
+                          <th>Description</th>
+                          <th>URL</th>
+                          <th>Prix</th>
+                          <th>Scraper</th>
+                          <th>Actions</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr v-for="product in products">
+                          <td>{{ product.name }}</td>
+                          <td>{{ product.description }}</td>
+                          <td><a class="badge badge-primary" target="_blank" :href="product.url">Ouvrir</a></td>
+                          <td>{{ product.price }} €</td>
+                          <td>{{ product.scraper.name }}</td>
+                          <td>
+                              <b-button variant="secondary" class="mb-md-0 mb-sm-2" size="sm">Editer</b-button>
+                              <b-button variant="danger" size="sm" @click="remove(product.id)">Supprimer</b-button>
+                          </td>
+                      </tr>
+                      </tbody>
+                  </table>
+                  <b-skeleton-table
+                      v-else
+                      :rows="4"
+                      :columns="4"
+                      :table-props="{ striped: true }"
+                  ></b-skeleton-table>
+              </div>
+          </div>
       </div>
 
       <b-modal hide-footer="" v-model="showAdd" id="addModal" title="Ajouter un produit">
@@ -78,7 +88,7 @@
 import productService from "../../../Services/Fetch/productService";
 import scraperService from "../../../Services/Fetch/scraperService";
 
-import { BButton, BModal, BForm, BFormGroup, BFormInput, BFormSelect } from 'bootstrap-vue';
+import { BButton, BModal, BForm, BFormGroup, BFormInput, BFormSelect, BSkeletonTable } from 'bootstrap-vue';
 
 export default {
   name: 'Products',
@@ -88,7 +98,8 @@ export default {
       BForm,
       BFormGroup,
       BFormInput,
-      BFormSelect
+      BFormSelect,
+      BSkeletonTable
   },
   data() {
     return {
@@ -102,7 +113,7 @@ export default {
             price: null,
             scraper_id: null
         },
-        scrapers: null
+        scrapers: []
     }
   },
   beforeMount() {
@@ -128,11 +139,14 @@ export default {
       onSubmit()
       {
           productService.add(this.form)
-            .then(() => this.fetchProducts());
+            .then(() => {
+                this.fetchProducts();
+                this.showAdd = false;
+            });
       },
       loadModal()
       {
-          if(this.scrapers !== null)
+          if(this.scrapers.length !== 0) // Prevent the reloading of the scrapers multiple time
           {
               this.showAdd = !this.showAdd;
               return ;
@@ -140,10 +154,10 @@ export default {
 
           scraperService.getAll()
             .then(scrapers => {
-                this.scrapers = scrapers.map(scraper => {
+                this.scrapers = scrapers.map((scraper, index) => {
                     return {
                         value: scraper.id,
-                        text: scraper.name
+                        text: scraper.name,
                     }
                 });
                 this.showAdd = !this.showAdd;

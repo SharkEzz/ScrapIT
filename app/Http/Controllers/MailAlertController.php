@@ -7,8 +7,6 @@ use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Response;
-use Psy\Util\Json;
 
 class MailAlertController extends Controller
 {
@@ -19,16 +17,18 @@ class MailAlertController extends Controller
      */
     public function index()
     {
-        $mails = MailAlert::with('mailConfig', 'product')->get();
+        $mails = MailAlert::with('mailConfig', 'product')->orderBy('id', 'desc')->get();
 
         return new JsonResponse($mails);
     }
 
     /**
-     * @param Request $request
-     * @return JsonResponse
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function createAlert(Request $request): JsonResponse
+    public function store(Request $request)
     {
         $data = $request->validate([
             'product_id' => 'integer|required',
@@ -48,24 +48,6 @@ class MailAlertController extends Controller
             ->send(new \App\Mail\MailAlert($product, $data['price']));
 
         return new JsonResponse($mailAlert);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function store(Request $request)
-    {
-        $data = $request->validate([
-            'product_name' => 'required|max:255',
-            'date' => 'required|max:255',
-            'price_at' => 'required|max:255',
-            'scraper' => 'required|max:255'
-        ]);
-
-        dd($data);
     }
 
     /**

@@ -2,6 +2,6 @@
 # Nouveau deal !
 
 ### Produit : <a href="{{ $product->url }}">{{ $product->name }}</a>
-## Prix actuel : {{ $currentPrice }}
+## Prix actuel : {{ $currentPrice }} €
 
 @endcomponent
