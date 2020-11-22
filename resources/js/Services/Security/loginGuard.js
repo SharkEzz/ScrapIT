@@ -3,7 +3,7 @@ import {API_URL} from "../Fetch/fetch";
 
 const login = (email, password) => {
     return loginService.getCookie()
-        .then(res => loginService.postLogin(email, password).then(res => res.status === 200))
+        .then(() => loginService.postLogin(email, password).then(res => res.data))
         .catch(err => {});
 };
 

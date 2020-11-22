@@ -11,6 +11,10 @@ const loginService = {
             email,
             password
         });
+    },
+    postLogout()
+    {
+        return window.axios.post(API_URL + '/logout');
     }
 };
 

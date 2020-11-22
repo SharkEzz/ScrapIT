@@ -6,6 +6,9 @@ import Configuration from "./Vue/Components/Pages/Configuration";
 import Alerts from "./Vue/Components/Pages/Alerts";
 import Login from "./Vue/Components/Pages/Login";
 
+import { store } from "./store";
+import login from "./Services/Security/loginGuard";
+
 const routes = [
     {
         path: '/',
@@ -63,9 +66,16 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    document.title = process.env.MIX_APP_NAME + ' - ' + to.meta.title;
-
-    next();
+    if(!store.state.loggedIn && to.name !== 'login')
+    {
+        document.title = process.env.MIX_APP_NAME + ' - ' + 'Connexion';
+        next({name: 'login'});
+    }
+    else
+    {
+        document.title = process.env.MIX_APP_NAME + ' - ' + to.meta.title;
+        next();
+    }
 });
 
 export default router;

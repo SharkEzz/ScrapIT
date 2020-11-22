@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row justify-content-between">
-      <h3>Mes produits</h3>
+      <h3>Scrapers</h3>
       <button class="btn btn-success" @click="showAdd = !showAdd">Ajouter</button>
     </div>
     <div class="row no-gutters mt-3">

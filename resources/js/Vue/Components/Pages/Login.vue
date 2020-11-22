@@ -40,10 +40,12 @@ export default {
     methods: {
         onSubmit()
         {
-            login(this.form.email, this.form.password).then(result => {
-                if(result)
+            login(this.form.email, this.form.password).then(data => {
+                if(data)
                 {
-                    this.$router.push({name: 'index'})
+                    this.$store.commit('login');
+                    this.$store.commit('setUsername', data.user.name);
+                    this.$router.push({name: 'index'});
                 }
                 else
                 {

@@ -2,8 +2,10 @@ require('./bootstrap');
 
 import Vue from 'vue';
 import VueRouter from "vue-router";
+import Vuex from 'vuex';
 
 Vue.use(VueRouter);
+Vue.use(Vuex);
 
 import router from './router';
 
@@ -12,9 +14,11 @@ import 'bootstrap-vue/dist/bootstrap-vue.min.css';
 
 import App from './Vue/App';
 
+import { store } from "./store";
 
-const vm = new Vue({
+new Vue({
     components: { App },
     template: '<App />',
-    router
+    router,
+    store
 }).$mount('#app');
