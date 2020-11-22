@@ -20,6 +20,9 @@
     "dependencies": {
         "bootstrap": "^4.5.3",
         "bootstrap-vue": "^2.19.0",
+        "cheerio": "^1.0.0-rc.3",
+        "node-fetch": "^2.6.1",
+        "puppeteer": "^5.5.0",
         "vue": "^2.6.12",
         "vue-router": "^3.4.9"
     }
