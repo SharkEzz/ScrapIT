@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Route::post('login', 'Security\\SecurityController@login')->name('app.login');
+Route::post('logout', 'Security\\SecurityController@logout')->name('app.logout');
 
 Route::resource('products', 'ProductController')->except(['create', 'edit']);
 Route::resource('scrapers', 'ScraperController')->except(['create', 'edit']);

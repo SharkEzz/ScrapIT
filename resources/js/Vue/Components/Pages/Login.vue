@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import login from "../../../Services/Security/loginGuard";
+import login, { checkIfLoggedIn } from "../../../Services/Security/loginGuard";
 
 export default {
     name: 'Login',
@@ -40,7 +40,16 @@ export default {
     methods: {
         onSubmit()
         {
-            login(this.form.email, this.form.password).then(result => console.log(result));
+            login(this.form.email, this.form.password).then(result => {
+                if(result)
+                {
+                    this.$router.push({name: 'index'})
+                }
+                else
+                {
+                    // TODO -> show alert message
+                }
+            });
         }
     }
 }

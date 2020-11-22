@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Security;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,13 +19,36 @@ class SecurityController extends Controller
 
         if(Auth::attempt($data))
         {
-            return new JsonResponse(Auth::user());
+            /**
+             * @var $user User
+             */
+            $user = Auth::user();
+            $token = $user->createToken($user->id.'-access-token');
+
+            return new JsonResponse([
+                'user' => $user,
+                'token' => $token->plainTextToken
+            ]);
         }
         else
         {
+            return new JsonResponse([], 401);
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        if(Auth::check())
+        {
+            $request->user()->tokens()->delete();
+            Auth::logout();
             return new JsonResponse([
-                'error' => 'Unauthorized'
-            ], 401);
+                'success' => 'Logged out'
+            ]);
+        }
+        else
+        {
+            return new JsonResponse([], 400);
         }
     }
 }
